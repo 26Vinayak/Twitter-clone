@@ -7,6 +7,7 @@ import Landing from './components/Landing';
 import {setContext} from 'apollo-link-context';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import IsAuthenticated from './components/IsAuthenticated';
 
 const httpLink = new HttpLink({
   uri: 'http://localhost:4000'
@@ -32,18 +33,20 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <Switch>
-          <Route exact path='/landing'>
+          <Route  path='/landing'>
               <Landing/>
           </Route>
-          <Route exact path='/signup'>
+          <Route  path='/signup'>
               <Signup/>
           </Route>
-          <Route exact path='/login'>
+          <Route  path='/login'>
               <Login/>
           </Route>
-          <Route exact path='/'>
-              <Users/>
-          </Route>
+          <IsAuthenticated>
+            <Route exact path='/users'>
+                <Users/>
+            </Route>
+          </IsAuthenticated>
         </Switch>
       </Router>
     </ApolloProvider>

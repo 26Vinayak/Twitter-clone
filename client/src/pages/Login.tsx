@@ -2,7 +2,7 @@ import React from 'react'
 import {gql,useMutation} from '@apollo/client';
 import { ErrorMessage, Field ,Form , Formik } from 'formik';
 import * as Yup from 'yup';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { validate } from 'graphql';
 
 
@@ -34,8 +34,14 @@ function Login() {
     });
 
     return (
-        <div>
-            <h1>Login</h1>
+        <div className="container">
+            <img 
+                src="https://i.gadgets360cdn.com/large/Koo_details_small_1612960002135.jpg" 
+                alt=""
+                style={{width:"100px"}}
+                className="logo"
+            />
+            <h3>Login to App</h3>
             <Formik 
                 initialValues={initialValues} 
                 validationSchema={validateSchema}
@@ -51,9 +57,13 @@ function Login() {
                     <ErrorMessage name="email" component={'div'}/>
                     <Field name='password' type='password' placeholder='Password'/>
                     <ErrorMessage name="password" component={'div'}/>
-                    <button type="submit">Login</button>
+                    <button type="submit" className="login-button"><span>Log in</span></button>
                 </Form>
             </Formik>
+            <div className="register">
+                <h4>Don't have an account</h4>
+                <Link to ="signup">Sign up</Link>
+            </div>
         </div>
     );
 }
